@@ -200,8 +200,145 @@ int demo03() {
       x.setOnes(rows, cols);
       x.setConstant(rows, cols, value);
       x.setRandom(rows, cols);
- * 
- * 
+ *
+ *
  * */
 
+// 上面说的是不需要指定维度的方式定义矩阵和数组
+#include <Eigen/Dense>
+#include <iostream>
+
+using namespace std;
+
+void demo04()
+{
+    typedef Eigen::MatrixXf Dynamic2D;
+    Dynamic2D x;
+    int rows = 3;
+    int cols = 3;
+
+    // 作为等号右值（创建新对象）
+    x = Dynamic2D ::Identity(rows,cols);    // 生成单位矩阵
+    std::cout<<"Identify Matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    x = Dynamic2D::Zero(rows,cols);  // 生成全是0的矩阵
+    std::cout<<"Zero Matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    x = Dynamic2D::Ones(rows,cols);  // 生成全1矩阵
+    std::cout<<"One Matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    x = Dynamic2D::Constant(rows,cols,5.0f);     // 生成所有元素都是5的矩阵
+    std::cout<<"Constant matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    x = Dynamic2D::Random(rows,cols);        // 生成随机矩阵
+    std::cout<<"Random Matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+
+    // 调用成员函数
+    x.setIdentity(rows,cols);   // 重现设置为单位矩阵
+    x.setZero(rows,cols);       // 重新设置成为全为0的矩阵
+    x.setOnes(rows,cols);       // 重现设置为全1的矩阵
+    x.setConstant(rows,cols,10.0f);     // 重现设置所有元素为10
+    x.setRandom(rows,cols);     // 重现设置为随机矩阵
+
+}
+
+// 动态ArrayXXf示例
+void demo05()
+{
+    typedef Eigen::ArrayXXf Dynamic2D;  // 定义动态数组类型
+    Dynamic2D x;
+
+    int rows = 3,cols = 3;
+
+    // 作为等号右值（创建新对象）
+    // x = Dynamic2D::Identity(rows,cols);  // ArraryXXf不支持
+
+    x = Dynamic2D::Zero(rows,cols);  // 生成全是0的数组
+    std::cout<<"Zero Matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    x = Dynamic2D::Ones(rows,cols);  // 生成全1数组
+    std::cout<<"One Matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    x = Dynamic2D::Constant(rows,cols,5.0f);     // 生成所有元素都是5的数组
+    std::cout<<"Constant matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    x = Dynamic2D::Random(rows,cols);        // 生成随机数组
+    std::cout<<"Random Matrix:"<<std::endl;
+    std::cout<<x<<std::endl;
+
+    // 调用成员函数
+//    x.setIdentity(rows,cols);   // 重现设置为单位数组 数组不支持
+    x.setZero(rows,cols);       // 重新设置成为全为0的数组
+    x.setOnes(rows,cols);       // 重现设置为全1的数组
+    x.setConstant(rows,cols,10.0f);     // 重现设置所有元素为10
+    x.setRandom(rows,cols);     // 重现设置为随机数组
+
+}
+
+/**
+    typedef {VectorXf | ArrayXf} Dynamic1D;
+    Dynamic1D x;
+    // 创建对应类的对象（作为等号右值）
+    x = Dynamic1D::Zero(size);
+    x = Dynamic1D::Ones(size);
+    x = Dynamic1D::Constant(size, value);
+    x = Dynamic1D::Random(size);
+    x = Dynamic1D::LinSpaced(size, low, high);
+    // 调用对应成员函数
+    x.setZero(size);
+    x.setOnes(size);
+    x.setConstant(size, value);
+    x.setRandom(size);
+    x.setLinSpaced(size, low, high);
+ */
+
+// vectorXf(动态向量)示例
+void demo06()
+{
+    int size = 5;   // 向量的大小
+    Eigen::VectorXf vec;    // 声明动态向量
+
+    // 赋值操作（创造新的向量）
+    vec = Eigen::VectorXf ::Zero(size); // 全0向量
+    std::cout<<"Eigen::VectorXf::Zero:"<<std::endl;
+    std::cout<<vec.transpose()<<std::endl;  // transpose表示转置
+
+    vec = Eigen::VectorXf::Ones(size);        // 全 1
+    std::cout << "VectorXf::Ones:\n" << vec.transpose() << "\n\n";
+
+    vec = Eigen::VectorXf::Constant(size, 3); // 全 3
+    std::cout << "VectorXf::Constant(3):\n" << vec.transpose() << "\n\n";
+
+    vec = Eigen::VectorXf::Random(size);      // 生成随机数
+    std::cout << "VectorXf::Random:\n" << vec.transpose() << "\n\n";
+
+    vec = Eigen::VectorXf::LinSpaced(size, 1, 5);  // 生成 1 到 5 均匀分布
+    std::cout << "VectorXf::LinSpaced(1,5):\n" << vec.transpose() << "\n\n";
+
+    // 调用成员函数修改已有向量
+    vec.setZero(size);
+    std::cout << "setZero:\n" << vec.transpose() << "\n\n";
+
+    vec.setOnes(size);
+    std::cout << "setOnes:\n" << vec.transpose() << "\n\n";
+
+    vec.setConstant(size, 7);
+    std::cout << "setConstant(7):\n" << vec.transpose() << "\n\n";
+
+    vec.setRandom(size);
+    std::cout << "setRandom:\n" << vec.transpose() << "\n\n";
+
+    vec.setLinSpaced(size, 10, 50);
+    std::cout << "setLinSpaced(10,50):\n" << vec.transpose() << "\n\n";
+    
+}
 
