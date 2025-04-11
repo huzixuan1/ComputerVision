@@ -55,3 +55,34 @@ slam_optimizer/
 └── README.md
 
 ```
+
+```cpp
+slam_optimizer_cpp/
+├── include/
+│   ├── optimizer/               # 核心优化模块头文件
+│   │   ├── optimizer.h          # 优化器主接口，负责调度整个优化流程（如 GN 或 LM 迭代）
+│   │   ├── qr_solver.h          # QR分解求解器接口，用于稀疏消元（特别是对3D点做消元）
+│   │   ├── residual_block.h     # 残差块接口，封装每个观测项（如IMU、重投影）的残差计算逻辑
+│   └── utils/
+│       ├── jacobian.h           # 雅可比矩阵计算工具，定义通用模板和计算方法
+│       ├── hessian.h            # 海森矩阵计算或构建（可选，主要用于GN形式）
+│       └── helper.h             # 通用辅助函数，如矩阵拼接、调试输出等
+├── src/
+│   ├── main.cpp                 # 主程序入口，初始化数据、构建图、运行优化
+│   ├── optimizer/
+│   │   ├── optimizer.cpp        # 实现优化器核心逻辑，如线性化、构建矩阵、调用QR消元、更新变量等
+│   │   ├── qr_solver.cpp        # 实现QR求解器，主要用于对稀疏变量（如3D点）进行消元
+│   │   ├── residual_block.cpp   # 实现残差块的计算方式，包括 Reprojection、IMU 等因子的残差与雅可比
+│   └── utils/
+│       ├── jacobian.cpp         # 实现雅可比计算的具体函数
+│       ├── hessian.cpp          # 实现海森矩阵的构建（根据雅可比），如需要用到 H = JᵀJ
+│       └── helper.cpp           # 一些通用工具实现，例如打印矩阵、索引映射、维度检查等
+├── tests/
+│   ├── test_optimizer.cpp       # 对 Optimizer 的单元测试，验证优化收敛性、结果正确性
+│   ├── test_qr_solver.cpp       # 对 QR 分解模块测试，验证稀疏消元是否正确
+│   └── test_residual.cpp        # 对 ResidualBlock 测试，验证重投影/IMU 残差和雅可比计算正确性
+├── thirdparty/                  # 可选，存放外部依赖，如 Eigen（矩阵库）、Sophus（位姿）、gtest 等
+├── CMakeLists.txt               # 构建系统配置文件，定义项目结构、依赖和编译规则
+└── README.md                    # 项目说明文档，介绍用途、架构、依赖、编译方法和示例用法
+
+```
