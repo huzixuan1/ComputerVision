@@ -21,8 +21,10 @@
 https://blog.csdn.net/qq_52068373/article/details/127871743
 https://blog.csdn.net/weixin_55944949/article/details/140373710
 
+----
 
 ----其实有简便方法----
 那就是使用下面的这个镜像：
 [docker pull jianchong/vins-fusion](https://hub.docker.com/r/jianchong/vins-fusion)
+
 然后其他的流程，就是按照***10、运行VINS***走就可以了
