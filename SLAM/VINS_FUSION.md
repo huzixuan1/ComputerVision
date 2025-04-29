@@ -23,6 +23,10 @@ https://blog.csdn.net/weixin_55944949/article/details/140373710
 
 ----
 
+##### 11、docker运行需要的工具
+
+https://sourceforge.net/projects/vcxsrv/
+
 ----其实有简便方法----
 那就是使用下面的这个镜像：
 [docker pull jianchong/vins-fusion](https://hub.docker.com/r/jianchong/vins-fusion)
