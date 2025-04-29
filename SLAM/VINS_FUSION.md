@@ -1,4 +1,3 @@
-
 ## 📘 VINS-Fusion Guide
 
 #### 目录
@@ -15,19 +14,15 @@
 ##### 11、关于docker环境运行的问题
 ##### 12、相关文档
 
+##### 12、相关文档
+>本文记录了slam开源项目VINS_FUSION的环境搭建以及执行过程，
+由于笔者对于slam玩的也不是那么的六，所以在文档的描述方面多有不准确的地方，还请多担待！！！
+非常感谢下面两位大佬文章，让我少走了很多弯路，大家可以给文章点点赞！
+https://blog.csdn.net/qq_52068373/article/details/127871743
+https://blog.csdn.net/weixin_55944949/article/details/140373710
 
-### 1、 简介
->VINS-Fusion 是香港科技大学 Aerial Robotics Group 开源的一个多传感器视觉惯性 SLAM 框架。它支持多种传感器组合（单目+IMU、双目+IMU、双目、RGB-D 等），具备以下特点:
-1、支持多种视觉输入组合；
-2、集成了闭环检测（Loop Closure）；
-3、支持实时 6DoF 位姿估计；
-4、可与地图融合、GNSS 等其他系统集成；
-5、VINS-Fusion 可广泛用于机器人、无人机、AR/VR 等需要高精度定位的场景；
 
-### 2、目标受众
->本文档旨在记录VINS-Fusion的配置、运行、完整流程，包括：
-环境搭建、数据集准备与运行、常见问题排查与解决、后续代码阅读建议；
-适合以下读者：
-想快速部署 VINS-Fusion 环境的新手；
-正在调试 VINS-Fusion 遇到问题的开发者；
-希望深入理解其代码结构的工程师或研究人员；
+----其实有简便方法----
+那就是使用下面的这个镜像：
+[docker pull jianchong/vins-fusion](https://hub.docker.com/r/jianchong/vins-fusion)
+然后其他的流程，就是按照***10、运行VINS***走就可以了
